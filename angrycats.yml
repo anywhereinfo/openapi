@@ -1,0 +1,49 @@
+openapi: '3.0.2'
+info:
+  title: Angry cat videos
+  contact:
+    name: Any cat productions
+    email: Angrycats@cats.com
+    url: www.cats.com/angrycatvideos/support
+  description: This api displays cat videos of very angry cats. Pacificsts should avoid these videos
+  license:
+    name: Angry cat videos license
+    url: https://opensource-cats.com/license
+  termsOfService: https://opensource-cats.com/termsofLicense
+  version: '1.0'
+servers:
+  - url: https://api-{env}.cats.com/videos
+    description: Cat server
+    variables:
+      env:
+        default: "prod"
+        enum:
+          - "prod"
+          - "uat"
+          - "dev"
+          - "demo"
+paths:
+  /v1/angry-cats:
+    get:
+      summary: List of angry cat videos which are not sutiable for pacifists
+      description: Returns a list of videos in which viscous and lethal acts are performed by angry cats
+      tags:
+        - Violent Videos
+      responses:
+        '200':
+          description: Returns a list of videos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    description:
+                      type: string
+                    summary:
+                      type: string
+                  required:
+                    - url

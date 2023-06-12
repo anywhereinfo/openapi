@@ -29,6 +29,17 @@ paths:
       description: Returns a list of videos in which viscous and lethal acts are performed by angry cats
       tags:
         - Violent Videos
+      parameters:
+        - name: violence-level
+          in: query
+          schema:
+            type: string
+            enum:
+              - "graphic"
+              - "endOfTheWorld"
+              - "girlFight"
+          example: "endOfTheWorld"
+          description: choose your poison             
       responses:
         '200':
           description: Returns a list of videos
@@ -47,3 +58,33 @@ paths:
                       type: string
                   required:
                     - url
+
+  /v1/angry-cats/{cat-id}:
+    get:
+      summary: Get video with a particular cat-id
+      description: Fetches a video based on cat-ids puchased by you
+      parameters:
+        - in: path
+          name: cat-id
+          schema:
+            type: integer
+          description: The ID of the cat
+          required: true
+          example: 101
+      responses:
+        '200':  
+          description: Returns a video with requested Id.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                  description:
+                    type: string
+                  summary:
+                    type: string
+                required:
+                  - url     
+                    

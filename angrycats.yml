@@ -58,7 +58,31 @@ paths:
                       type: string
                   required:
                     - url
+    post:
+      summary: Upload two angry cat videos
+      description: Upload your cat videos that you would like to share
+      requestBody:
+        required: true 
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      filename:
+                        type: string
+                        format: binary
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Internal server error
 
+          
   /v1/angry-cats/{cat-id}:
     get:
       summary: Get video with a particular cat-id
@@ -88,3 +112,4 @@ paths:
                 required:
                   - url     
                     
+  

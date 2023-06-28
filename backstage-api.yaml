@@ -3,6 +3,14 @@ kind: API
 metadata:
   name: angry-cats-api
   description: Lethal cats here
+  annotations:
+    endpoints:
+      - name: Users API
+        summary: API for managing user data
+        uri: /users
+      - name: Products API
+        summary: API for managing product data
+        uri: /products
 spec:
   type: openapi
   lifecycle: production

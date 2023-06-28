@@ -4,7 +4,7 @@ metadata:
   name: angry-cats-api
   description: Lethal cats here
   annotations:
-    endpoints:
+    endpoints: |
       - name: Users API
         summary: API for managing user data
         uri: /users

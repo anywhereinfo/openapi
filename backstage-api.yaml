@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: angry-cats-apisssss
+  name: "angry cats apisssss"
   description: Lethal cats here
   annotations:
     endpoints: |

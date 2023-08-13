@@ -1,0 +1,137 @@
+{
+  "extends": "spectral:oas",
+  "rules": {
+    "operation-operationId": false,
+    "response-code-500": {
+      "then": {
+        "function": "schema",
+        "functionOptions": {
+          "schema": {
+            "anyOf": [
+              {
+                "required": [
+                  "500"
+                ],
+                "properties": {
+                  "500": true
+                }
+              },
+              {
+                "required": [
+                  "501"
+                ],
+                "properties": {
+                  "501": true
+                }
+              },
+              {
+                "required": [
+                  "502"
+                ],
+                "properties": {
+                  "502": true
+                }
+              },
+              {
+                "required": [
+                  "503"
+                ],
+                "properties": {
+                  "503": true
+                }
+              },
+              {
+                "required": [
+                  "504"
+                ],
+                "properties": {
+                  "504": true
+                }
+              },
+              {
+                "required": [
+                  "505"
+                ],
+                "properties": {
+                  "505": true
+                }
+              },
+              {
+                "required": [
+                  "506"
+                ],
+                "properties": {
+                  "506": true
+                }
+              },
+              {
+                "required": [
+                  "507"
+                ],
+                "properties": {
+                  "507": true
+                }
+              },
+              {
+                "required": [
+                  "508"
+                ],
+                "properties": {
+                  "508": true
+                }
+              },
+              {
+                "required": [
+                  "510"
+                ],
+                "properties": {
+                  "510": true
+                }
+              },
+              {
+                "required": [
+                  "511"
+                ],
+                "properties": {
+                  "511": true
+                }
+              }
+            ],
+            "$schema": "https://json-schema.org/draft/2020-12/schema"
+          }
+        }
+      },
+      "given": "$.paths.*.*.responses",
+      "formats": [
+        "oas2",
+        "oas3"
+      ],
+      "message": "Operation should return a 5xx HTTP status code",
+      "severity": "warn",
+      "description": "Ensures that each of the operations returns at least a 5xx HTTP status code."
+    },
+    "operation-needSummaries": {
+        "then": [
+          {
+            "field": "summary",
+            "function": "truthy"
+          }
+        ],
+        "given": "$.paths.*[get,post,patch,put,delete,options,head,trace]",
+        "formats": [
+          "oas2",
+          "oas3"
+        ],
+        "message": "All of your operations need summaries.",
+        "severity": "error",
+        "description": "Ensures that each of the operations for an API have a summary."
+      }
+
+
+  }
+}
+
+
+
+
+

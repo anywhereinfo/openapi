@@ -1,4 +1,4 @@
-openapi: '3.0.2'
+openapi: '3.1.2'
 info:
   title: Angry cat videos
   contact:
@@ -22,6 +22,9 @@ servers:
           - "uat"
           - "dev"
           - "demo"
+tags:
+  -  name: Violent Videos
+     description: Peaceful monk cat videos
 paths:
   /v1/angry-cats:
     get:
@@ -38,7 +41,16 @@ paths:
               - "graphic"
               - "endOfTheWorld"
               - "girlFight"
-          example: "endOfTheWorld"
+          examples: 
+            grahic:
+              summary: Medium violence
+              value: "graphic"
+            endOfTheWorld:
+              summary: Maximum violence
+              value: "endOfTheWorld"
+            girlFight:
+              summary: Minimum violence
+              value: "girlFight"
           description: choose your poison             
       responses:
         '200':

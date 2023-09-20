@@ -1,0 +1,158 @@
+openapi: 3.1.0
+info:
+  title: "{API Title}"
+  
+  description: |
+    ## Overview
+    {Brief Overview of the API, Summarizing its General Function and Role}
+    ## Purpose
+    {Explain the Main Purpose, Objectives, and Business Value of the API at a High Level}
+    ## Target Audience
+    {Describe the Intended Users, Consumers, or Systems That Will Interact with the API}
+    ## Usage Guidelines
+    {Provide any General Guidelines or Limitations on Usage that Apply to the Entire API}
+    ## Version Information
+    {Describe the Current Version and Any High-Level Versioning Policy or Information}
+    **Note:** {Any Additional Critical Information, Disclaimers, or Legal Notices Pertaining to the Entire API}
+  version: "{Version}"
+  
+  license: 
+    name: "{License Name}"
+    url: "{License URL}"
+
+tags:
+  - name: "{Tag Name}"
+    description: "{Tag Description}"
+
+servers:
+  - url: "https://localhost/domain/v1"
+    description: "{Server Description}"
+
+externalDocs:
+  description: "{Description of External Documentation}"
+  url: "{URL to external documentation}"
+
+paths:
+  /example:
+    get:
+      tags:
+        - "{Tag Name}"
+      summary: "{Get Operation Summary}"
+      description: "{Get Operation Description}"
+      security:
+        - ApiKeyAuth: []
+        - OAuth2: ["read"]
+      parameters:
+        - name: "{Get Parameter Name}"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      x-slo:
+        availability: "{Required availability percentage}"
+        response_time:
+          - percentile: 99
+            value: "{response time value in milliseconds}"
+          - percentile: 95
+            value: "{response time value in milliseconds}"
+      responses:
+        '200':
+          description: "{Successful Response Description}"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetResponse'
+              examples:
+                example1:
+                  value:
+                    integerField: 1
+                    stringField: "Example 1"
+                    arrayField: [1, 2]
+                example2:
+                  value:
+                    integerField: 2
+                    stringField: "Example 2"
+                    arrayField: [3, 4]
+        '400':
+          description: "{Error Description}"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - "{Tag Name}"
+      summary: "{Post Operation Summary}"
+      description: "{Post Operation Description}"
+      security:
+        - OAuth2: ["write"]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostRequest'
+            examples:
+              example1:
+                value:
+                  postField: "Example 1"
+              example2:
+                value:
+                  postField: "Example 2"
+      responses:
+        '200':
+          description: "{Successful Response Description}"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: "apiKey"
+      in: "header"
+      name: "{API Key Header Name}"
+    OAuth2:
+      type: "oauth2"
+      flows:
+        authorizationCode:
+          authorizationUrl: "{Authorization URL}"
+          tokenUrl: "{Token URL}"
+          scopes:
+            read: "{Read Scope Description}"
+            write: "{Write Scope Description}"
+
+  schemas:
+    GetResponse:
+      type: "object"
+      properties:
+        integerField:
+          type: "integer"
+          minimum: 1
+          maximum: 2
+        stringField:
+          type: "string"
+          pattern: "{String Pattern}"
+          minLength: 1
+          maxLength: 2
+        arrayField:
+          type: "array"
+          minItems: 1
+          maxItems: 2
+          items:
+            type: "string"
+    ErrorResponse:
+      type: "object"
+      properties:
+        errorMessage:
+          type: "string"
+    PostRequest:
+      type: "object"
+      properties:
+        postField:
+          type: "string"
+    PostResponse:
+      type: "object"
+      properties:
+        responseField:
+          type: "string"
